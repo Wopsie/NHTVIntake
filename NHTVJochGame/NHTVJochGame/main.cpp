@@ -1,8 +1,7 @@
 #include<SFML\Window.hpp>
-#include<SFML\Graphics.hpp>
+//#include<SFML\Graphics.hpp>
 #include <iostream>
 #include"Player.h"
-#include "Bullet.h"
 #include "Projectile.h"
 #include "Globals.h"
 using namespace std;
@@ -10,9 +9,11 @@ using namespace sf;
 
 int main() {
 	RenderWindow window{ VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Reflective lil game" };
+	//Globals globals;
 
-	Projectile bullet = Projectile(WINDOW_WIDTH /2.f, WINDOW_HEIGHT /2.f, 0.05f, 0.05f);
+	//Projectile bullet = Projectile(WINDOW_WIDTH /2.f, WINDOW_HEIGHT /2.f, 0.05f, 0.05f);
 	Player player = Player(WINDOW_WIDTH / 2.f, WINDOW_HEIGHT / 1.2f);
+
 
 	//main loop
 	while (true) {
@@ -20,13 +21,18 @@ int main() {
 
 		if (Keyboard::isKeyPressed(Keyboard::Key::Escape)) break;
 
-		bullet.Update();
-		window.draw(bullet.GetShape());
+		//bullet.Update();
+		//window.draw(bullet.GetShape());
 
-		player.Update();
-		window.draw(player.GetShape());
+		//player.Update();
+		//window.draw(player.GetShape());
+		std::cout << updateList.size() << std::endl;
 
-
+		for (size_t i = 0; i < updateList.size(); i++){
+			updateList[i]();
+			window.draw(drawList[i]());
+		}
+		
 		window.display();
 	}
 

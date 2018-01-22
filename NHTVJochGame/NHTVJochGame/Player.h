@@ -25,6 +25,7 @@ private:
 	float xSize = 20;
 	float ySize = 20;
 	float speed = 0.05f;
+	int updateIndex;
 	void Start();
 	void CheckScreenEdge();
 };
