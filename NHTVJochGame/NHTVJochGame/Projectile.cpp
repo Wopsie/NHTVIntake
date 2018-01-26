@@ -18,8 +18,9 @@ void Projectile::Start(){
 	Globals globals;
 	updateIndex = globals.AddToUpdateList([this]() {Update(); });
 
-	globals.AddDrawableShape(GetShape());
+	//globals.AddDrawableShape(GetShape());
 	//globals.AddDrawable(&GetShape());
+	globals.AddRectangle(&shape);
 }
 
 void Projectile::Destroy(){

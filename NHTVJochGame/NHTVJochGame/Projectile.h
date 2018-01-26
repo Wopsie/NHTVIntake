@@ -10,7 +10,7 @@ public:
 	void Destroy();
 	void Update();
 	void Start();
-	sf::RectangleShape& GetShape() { return shape; };
+	sf::RectangleShape GetShape() { return shape; };
 	float xPos();
 	float yPos();
 	float leftBox();

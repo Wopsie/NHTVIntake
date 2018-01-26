@@ -19,8 +19,9 @@ Player::Player(float mX, float mY){
 void Player::Start(){
 	Globals globals;
 	updateIndex = globals.AddToUpdateList([this]() {Update(); });
-	globals.AddDrawableShape(shape);
+	//globals.AddDrawableShape(shape);
 	//globals.AddDrawable(&GetShape());
+	globals.AddRectangle(&GetShape());
 	std::cout << updateIndex << std::endl;
 }
 

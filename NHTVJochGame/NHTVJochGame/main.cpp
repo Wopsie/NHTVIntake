@@ -28,7 +28,8 @@ int main() {
 
 		for (size_t i = 0; i < updateList.size(); i++){
 			updateList[i]();
-			window.draw(*drawList.at(i));
+			//window.draw(*drawList.at(i));
+			window.draw(drawables.at(i));
 		}
 		
 		window.display();
