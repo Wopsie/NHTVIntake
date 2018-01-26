@@ -1,5 +1,8 @@
-﻿  main.cpp
-  Player.cpp
-d:\cppprojs\nhtvassignment\nhtvintake\nhtvjochgame\nhtvjochgame\player.cpp(21): error C2664: 'void Globals::AddToDrawList(std::function<sf::RectangleShape (void)>)': cannot convert argument 1 from 'Player::Start::<lambda_32e989761b3d58840c745ef4cc95c76d>' to 'std::function<sf::RectangleShape (void)>'
-  d:\cppprojs\nhtvassignment\nhtvintake\nhtvjochgame\nhtvjochgame\player.cpp(21): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+﻿  Globals.cpp
   Generating Code...
+  Skipping... (no relevant changes detected)
+  main.cpp
+  Projectile.cpp
+  Player.cpp
+  NHTVJochGame.vcxproj -> D:\cppProjs\NHTVAssignment\NHTVIntake\NHTVJochGame\Debug\NHTVJochGame.exe
+  NHTVJochGame.vcxproj -> D:\cppProjs\NHTVAssignment\NHTVIntake\NHTVJochGame\Debug\NHTVJochGame.pdb (Partial PDB)

@@ -2,33 +2,36 @@
 #include "Globals.h"
 #include <iostream>
 
-
 Projectile::Projectile(float mX, float mY, float velX, float velY){
 	velocity = sf::Vector2f(velX, velY);
-	shape.setPosition(mX, mY);
-	shape.setSize({ xSize, ySize });
-	shape.setFillColor(sf::Color::Red);
-	shape.setOrigin(xSize / 2.f, ySize / 2.f);
+	GetShape().setPosition(mX, mY);
+	GetShape().setSize({ xSize, ySize });
+	GetShape().setFillColor(sf::Color::Red);
+	GetShape().setOrigin(xSize / 2.f, ySize / 2.f);
 	//std::cout << left << std::endl;
 	float f = leftBox();
 
 	Start();
 }
 
-void Projectile::Destroy()
-{
+void Projectile::Start(){
+	Globals globals;
+	updateIndex = globals.AddToUpdateList([this]() {Update(); });
+
+	globals.AddDrawableShape(GetShape());
+	//globals.AddDrawable(&GetShape());
 }
 
-void Projectile::Update()
-{
-	shape.move(velocity);
+void Projectile::Destroy(){
 
+}
+
+void Projectile::Update(){
+	GetShape().move(velocity);
 	CheckScreenEdge();
 	//std::cout << "Calling projectile::Update" << std::endl;
-}
 
-void Projectile::Start()
-{
+	//window.draw(GetShape());
 }
 
 void Projectile::CheckScreenEdge()
@@ -42,6 +45,7 @@ void Projectile::CheckScreenEdge()
 		velocity.x = -velocity.x;
 	}
 
+	//vertical
 	if (topBox() < 0) {
 		velocity.y = -velocity.y;
 	}
@@ -51,31 +55,27 @@ void Projectile::CheckScreenEdge()
 	}
 }
 
-sf::RectangleShape Projectile::GetShape(){
-	return shape;
-}
-
 ///getter methods for collision
 float Projectile::xPos(){
-	return shape.getPosition().x;
+	return GetShape().getPosition().x;
 }
 
 float Projectile::yPos(){
-	return shape.getPosition().y;
+	return GetShape().getPosition().y;
 }
 
 float Projectile::leftBox(){
-	return xPos() - (shape.getSize().x / 2.f);
+	return xPos() - (GetShape().getSize().x / 2.f);
 }
 
 float Projectile::rightBox(){
-	return xPos() + (shape.getSize().x / 2.f);
+	return xPos() + (GetShape().getSize().x / 2.f);
 }
 
 float Projectile::topBox(){
-	return yPos() - (shape.getSize().y / 2.f);
+	return yPos() - (GetShape().getSize().y / 2.f);
 }
 
 float Projectile::botBox(){
-	return yPos() + (shape.getSize().y / 2.f);
+	return yPos() + (GetShape().getSize().y / 2.f);
 }

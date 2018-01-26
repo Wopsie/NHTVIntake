@@ -1,5 +1,4 @@
 #include<SFML\Window.hpp>
-//#include<SFML\Graphics.hpp>
 #include <iostream>
 #include"Player.h"
 #include "Projectile.h"
@@ -7,11 +6,11 @@
 using namespace std;
 using namespace sf;
 
-int main() {
-	RenderWindow window{ VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Reflective lil game" };
-	//Globals globals;
+RenderWindow window{ VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Reflective lil game" };
 
-	//Projectile bullet = Projectile(WINDOW_WIDTH /2.f, WINDOW_HEIGHT /2.f, 0.05f, 0.05f);
+int main() {
+
+	Projectile bullet = Projectile(WINDOW_WIDTH /2.f, WINDOW_HEIGHT /2.f, 0.05f, 0.05f);
 	Player player = Player(WINDOW_WIDTH / 2.f, WINDOW_HEIGHT / 1.2f);
 
 
@@ -26,18 +25,16 @@ int main() {
 
 		//player.Update();
 		//window.draw(player.GetShape());
-		std::cout << updateList.size() << std::endl;
 
 		for (size_t i = 0; i < updateList.size(); i++){
 			updateList[i]();
-			window.draw(drawList[i]());
+			window.draw(*drawList.at(i));
 		}
 		
 		window.display();
 	}
 
 	return 0;
-
 }
 
 

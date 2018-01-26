@@ -6,11 +6,14 @@
 constexpr int WINDOW_WIDTH = 800;
 constexpr int WINDOW_HEIGHT = 600;
 
-//global "lists" for everything that needs to be done each frame
-extern std::vector<std::function<sf::RectangleShape()>> drawList;
+//global "list" for everything that needs to be done each frame
 extern std::vector<std::function<void()>> updateList;
+extern std::vector<const sf::Drawable*> drawList;
+extern std::vector<sf::Drawable> drawables;
+
 
 struct Globals {
 	int AddToUpdateList(std::function<void()>);
-	void AddToDrawList(std::function<sf::RectangleShape()>);
+	void AddDrawableShape(const sf::Drawable &drawable);
+	//void AddDrawable(sf::Drawable * shape);
 };
