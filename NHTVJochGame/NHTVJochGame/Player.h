@@ -1,7 +1,36 @@
 #pragma once
 #include <vector>
-#include <SFML\Graphics.hpp>
+#include "DrawableObj.h"
+#include "Globals.h"
 
+//#include <SFML\Graphics.hpp>
+
+class Player : public DrawableObj {
+public:
+	Player(float mX, float mY);
+	void Update() override;
+	void Move() override;
+	void Draw(RenderWindow &win);
+	float xPos();
+	float yPos();
+	float leftBox();
+	float rightBox();
+	float topBox();
+	float botBox();
+
+private:
+	void Shoot();
+	void TakeDamage();
+	float xSize = 20;
+	float ySize = 20;
+	float speed = 0.05f;
+	int updateIndex;
+	int shotDelay;
+	int bounceCount;
+	Globals globals;
+};
+
+/*
 class Player {
 public:
 	Player(float mX, float mY); //constructor
@@ -11,7 +40,8 @@ public:
 	void Destroy();
 	void Move();
 	void Reset();
-	sf::RectangleShape GetShape() { return shape; };
+	void Draw();
+	sf::RectangleShape& GetShape() { return shape; };
 	float xPos();
 	float yPos();
 	float leftBox();
@@ -29,3 +59,4 @@ private:
 	void Start();
 	void CheckScreenEdge();
 };
+*/

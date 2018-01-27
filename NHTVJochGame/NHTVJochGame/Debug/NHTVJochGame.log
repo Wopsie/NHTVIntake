@@ -1,9 +1,3 @@
-﻿  Projectile.cpp
-d:\cppprojs\nhtvassignment\nhtvintake\nhtvjochgame\nhtvjochgame\projectile.cpp(23): error C2664: 'void Globals::AddRectangle(sf::RectangleShape *)': cannot convert argument 1 from 'sf::RectangleShape' to 'sf::RectangleShape *'
-  d:\cppprojs\nhtvassignment\nhtvintake\nhtvjochgame\nhtvjochgame\projectile.cpp(23): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
-  Generating Code...
-  Compiling...
-  Player.cpp
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  main.cpp
+﻿  Player.cpp
+  NHTVJochGame.vcxproj -> D:\cppProjs\NHTVAssignment\NHTVIntake\NHTVJochGame\Debug\NHTVJochGame.exe
+  NHTVJochGame.vcxproj -> D:\cppProjs\NHTVAssignment\NHTVIntake\NHTVJochGame\Debug\NHTVJochGame.pdb (Partial PDB)
