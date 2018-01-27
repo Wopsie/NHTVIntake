@@ -26,7 +26,6 @@ private:
 	float speed = 0.05f;
 	int updateIndex;
 	int shotDelay;
-	int bounceCount;
 	Globals globals;
 };
 

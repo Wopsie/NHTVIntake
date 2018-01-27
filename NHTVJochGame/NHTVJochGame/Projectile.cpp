@@ -11,12 +11,12 @@ Projectile::Projectile(float mX, float mY, float velX, float velY) {
 }
 
 void Projectile::Update(){
-	GetShape().move(velocity);
+	Move();
 	CheckScreenEdge();
 }
 
 void Projectile::Move(){
-
+	GetShape().move(velocity);
 }
 
 void Projectile::CheckScreenEdge()
@@ -24,19 +24,30 @@ void Projectile::CheckScreenEdge()
 	//horizontal
 	if (leftBox() < 0) {
 		velocity.x = -velocity.x;
+		bounceCount++;
 	}
 
 	if (rightBox() > WINDOW_WIDTH) {
 		velocity.x = -velocity.x;
+		bounceCount++;
 	}
 
 	//vertical
 	if (topBox() < 0) {
 		velocity.y = -velocity.y;
+		bounceCount++;
 	}
 
 	if (botBox() > WINDOW_HEIGHT) {
 		velocity.y = -velocity.y;
+		bounceCount++;
+	}
+}
+
+void Projectile::CheckBounces(){
+	if (bounceCount > 2) {
+		//remove object from memory
+		//will be interesting to see what happens to the lists
 	}
 }
 

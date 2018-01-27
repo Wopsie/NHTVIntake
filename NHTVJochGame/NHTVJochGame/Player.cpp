@@ -21,15 +21,12 @@ void Player::Update(){
 	if (shotDelay < 0) shotDelay = 0;
 	else shotDelay--;
 
-	//cout << shotDelay << endl;
-
-		//put timer on this
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && (shotDelay == 0)) {
-		std::cout << "SHOOTING" << std::endl;
 		Shoot();
 	}
 }
 
+///moves player shape & checks if it doesnt go off screen
 void Player::Move() {
 	GetShape().move(velocity);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && leftBox() > 0) {
@@ -42,8 +39,8 @@ void Player::Move() {
 		velocity.x = 0;
 }
 
+///pew
 void Player::Shoot() {
-	//instantiate new projectile
 	Projectile bullet = Projectile(xPos(), yPos(), velocity.x, -0.05f);
 	globals.AddProjectile(bullet);
 	shotDelay = 1000;

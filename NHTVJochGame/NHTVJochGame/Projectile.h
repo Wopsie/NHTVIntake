@@ -20,12 +20,14 @@ public:
 
 private:
 	void CheckScreenEdge();
+	void CheckBounces();
 	RectangleShape shape;
 	sf::Vector2f velocity;
 	float xSize = 20;
 	float ySize = 20;
 	float speed = 0.05f;
 	int updateIndex;
+	int bounceCount;
 };
 
 /*
