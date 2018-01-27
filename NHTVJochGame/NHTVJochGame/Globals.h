@@ -8,6 +8,7 @@
 //screen resolution
 constexpr int WINDOW_WIDTH = 800;
 constexpr int WINDOW_HEIGHT = 600;
+constexpr float PI = 3.14159265358979323846;
 
 //global "list" for everything that needs to be done each frame
 extern std::vector<std::function<void()>> updateList;

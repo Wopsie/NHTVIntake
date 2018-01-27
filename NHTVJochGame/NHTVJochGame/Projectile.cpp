@@ -8,6 +8,7 @@ Projectile::Projectile(float mX, float mY, float velX, float velY) {
 	GetShape().setSize({ xSize, ySize });
 	GetShape().setFillColor(sf::Color::Red);
 	GetShape().setOrigin(xSize / 2.f, ySize / 2.f);
+	GetShape().setRotation(GetMovementDirectionInDegrees(velocity));
 }
 
 void Projectile::Update(){
@@ -16,6 +17,7 @@ void Projectile::Update(){
 }
 
 void Projectile::Move(){
+	velocity = Vector2f(velocity.x * speed, velocity.y * speed);
 	GetShape().move(velocity);
 }
 
@@ -25,22 +27,30 @@ void Projectile::CheckScreenEdge()
 	if (leftBox() < 0) {
 		velocity.x = -velocity.x;
 		bounceCount++;
+		//speed += 0.0001f;
+		GetShape().setRotation(GetMovementDirectionInDegrees(velocity));
 	}
 
 	if (rightBox() > WINDOW_WIDTH) {
 		velocity.x = -velocity.x;
 		bounceCount++;
+		//speed += 0.0001f;
+		GetShape().setRotation(GetMovementDirectionInDegrees(velocity));
 	}
 
 	//vertical
 	if (topBox() < 0) {
 		velocity.y = -velocity.y;
 		bounceCount++;
+		//speed += 0.0001f;
+		GetShape().setRotation(GetMovementDirectionInDegrees(velocity));
 	}
 
 	if (botBox() > WINDOW_HEIGHT) {
 		velocity.y = -velocity.y;
 		bounceCount++;
+		//speed += 0.00001f;
+		GetShape().setRotation(GetMovementDirectionInDegrees(velocity));
 	}
 }
 
@@ -49,6 +59,10 @@ void Projectile::CheckBounces(){
 		//remove object from memory
 		//will be interesting to see what happens to the lists
 	}
+}
+
+float Projectile::GetMovementDirectionInDegrees(sf::Vector2f vec){
+	return (atan2f(vec.y, vec.x) / PI) * 180;
 }
 
 void Projectile::Draw(RenderWindow & win){
