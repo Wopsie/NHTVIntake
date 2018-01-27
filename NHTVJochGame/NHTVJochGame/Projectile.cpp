@@ -1,14 +1,18 @@
 #include "Projectile.h"
 #include "Globals.h"
 #include <iostream>
+#include <algorithm>
 
 Projectile::Projectile(float mX, float mY, float velX, float velY) {
+	isAlive = true;
 	velocity = Vector2f(velX, velY);
 	GetShape().setPosition(mX, mY);
 	GetShape().setSize({ xSize, ySize });
 	GetShape().setFillColor(sf::Color::Red);
 	GetShape().setOrigin(xSize / 2.f, ySize / 2.f);
 	GetShape().setRotation(GetMovementDirectionInDegrees(velocity));
+	//updateIndex = projectileList.size();
+	bounceCount = 0;
 }
 
 void Projectile::Update(){
@@ -25,44 +29,55 @@ void Projectile::CheckScreenEdge()
 {
 	//horizontal
 	if (leftBox() < 0) {
-		velocity.x = -velocity.x;
 		bounceCount++;
+		CheckBounces();
+		velocity.x = -velocity.x;
 		//speed += 0.0001f;
 		GetShape().setRotation(GetMovementDirectionInDegrees(velocity));
 	}
 
 	if (rightBox() > WINDOW_WIDTH) {
-		velocity.x = -velocity.x;
 		bounceCount++;
+		CheckBounces();
+		velocity.x = -velocity.x;
 		//speed += 0.0001f;
 		GetShape().setRotation(GetMovementDirectionInDegrees(velocity));
 	}
 
 	//vertical
 	if (topBox() < 0) {
-		velocity.y = -velocity.y;
 		bounceCount++;
+		CheckBounces();
+		velocity.y = -velocity.y;
 		//speed += 0.0001f;
 		GetShape().setRotation(GetMovementDirectionInDegrees(velocity));
 	}
 
 	if (botBox() > WINDOW_HEIGHT) {
-		velocity.y = -velocity.y;
 		bounceCount++;
+		CheckBounces();
+		velocity.y = -velocity.y;
 		//speed += 0.00001f;
 		GetShape().setRotation(GetMovementDirectionInDegrees(velocity));
 	}
 }
 
 void Projectile::CheckBounces(){
+	cout << bounceCount << endl;
 	if (bounceCount > 2) {
 		//remove object from memory
 		//will be interesting to see what happens to the lists
+		Kill();
 	}
 }
 
 float Projectile::GetMovementDirectionInDegrees(sf::Vector2f vec){
 	return (atan2f(vec.y, vec.x) / PI) * 180;
+}
+
+void Projectile::Kill(){
+	cout << "Killing bullet" << endl;
+	isAlive = false;
 }
 
 void Projectile::Draw(RenderWindow & win){

@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
-#include <cmath>
-#include <math.h>
+//#include <math.h>
 #include "DrawableObj.h"
 
 #define _USE_MATH_DEFINES
@@ -12,26 +11,29 @@ public:
 	Projectile(float, float, float, float);
 	void Update();
 	void Move();
-	RectangleShape& GetShape() { return shape; };
 	void Draw(RenderWindow &win);
+	RectangleShape& GetShape() { return shape; };
 	float xPos();
 	float yPos();
 	float leftBox();
 	float rightBox();
 	float topBox();
 	float botBox();
+	bool getAlive() { return isAlive; };
 
 private:
 	void CheckScreenEdge();
 	void CheckBounces();
 	float GetMovementDirectionInDegrees(sf::Vector2f);
+	void Kill();
 	RectangleShape shape;
 	sf::Vector2f velocity;
 	float xSize = 30;
 	float ySize = 2;
 	float speed = 1.f;
 	int updateIndex;
-	int bounceCount;
+	int bounceCount = 0;
+	bool isAlive;
 };
 
 /*

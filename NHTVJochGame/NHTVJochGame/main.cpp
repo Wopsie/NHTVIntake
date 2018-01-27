@@ -32,12 +32,17 @@ int main() {
 		player.Update();
 		player.Draw(window);
 
+		//update & draw bullets
 		for (size_t i = 0; i < projectileList.size(); i++){
-			projectileList[i].Update();
-			projectileList[i].Draw(window);
+			if (projectileList[i].getAlive()) {
+				projectileList[i].Update();
+				projectileList[i].Draw(window);
+			}else{
+				//if bullet is not alive, erase
+				projectileList.erase(projectileList.begin()+i);
+			}
 		}
 
-		
 		window.display();
 	}
 

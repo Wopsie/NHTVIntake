@@ -44,7 +44,6 @@ void Player::Shoot() {
 	Projectile bullet = Projectile(xPos(), yPos(), velocity.x, -0.05f);
 	globals.AddProjectile(bullet);
 	shotDelay = 1000;
-	//globals.AddToObjList(bullet);
 }
 
 void Player::Draw(RenderWindow & win){
