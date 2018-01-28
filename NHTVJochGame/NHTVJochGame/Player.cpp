@@ -22,7 +22,7 @@ void Player::Update(){
 	//cooldown i-frames
 	if (invincibleTimer < 0) invincibleTimer = 0;
 	else invincibleTimer--;
-
+	//update collider
 	GetCollider() = GetShape().getGlobalBounds();
 	CheckBulletCollisions();
 	Move();
@@ -45,7 +45,7 @@ void Player::Move() {
 		velocity.x = 0;
 }
 
-///pew
+///player shoot bullet
 void Player::Shoot() {
 	Projectile bullet = Projectile(xPos(), yPos(), velocity.x, -7.f, false);
 	globals.AddProjectile(bullet);
@@ -57,16 +57,20 @@ void Player::TakeDamage(){
 	health--;
 	if (health < 0){
 		//gameover
-		globals.GameOver(false, 10);
+		health = 2;
+		globals.GameOver(false);
 	}
 }
 
+///check for collision with bullets
 void Player::CheckBulletCollisions(){
 	for (size_t i = 0; i < projectileList.size(); i++){
 		if (GetShape().getGlobalBounds().intersects(projectileList[i].GetShape().getGlobalBounds())){
+			//valid collision
 			if (projectileList[i].GetIsEnemy()){
-				//cout << "PLAYER COLLISION WITH ENEMY BULLET " << endl;
+				//confirmed enemy bullet
 				if (invincibleTimer == 0) {
+					//confirmed not intangible
 					TakeDamage();
 					projectileList[i].Kill();
 				}

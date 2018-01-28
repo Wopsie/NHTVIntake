@@ -29,9 +29,9 @@ void Enemy::Move(){
 	if (moveTimer == 0){
 		//Set Velocity right
 		if (xMoveCount < 10 && goLeft == false)
-			velocity = Vector2f(5, 0);
+			velocity = Vector2f(7, 0);
 		else if(xMoveCount < 10 && goLeft == true)
-			velocity = Vector2f(-5, 0);
+			velocity = Vector2f(-7, 0);
 		else if (xMoveCount == 10){
 			velocity = Vector2f(0, 15);
 			xMoveCount = 0;
@@ -39,17 +39,31 @@ void Enemy::Move(){
 		}
 		//move
 		GetShape().move(velocity);
-		moveTimer = 60;
+		
+		//set movement interval in frames
+		if (enemyList.size() < 16)
+			moveTimer = 30;
+		else if (enemyList.size() < 8)
+			moveTimer = 20;
+		else
+			moveTimer = 60;
+
 		xMoveCount++;
+	}
+
+	//check if enemies have reached certain threshhold at which player loses
+	if (yPos() > WINDOW_HEIGHT / 1.25f) {
+		Globals globals;
+		globals.GameOver(false);
 	}
 }
 
+///enemy shoot bullet
 void Enemy::Shoot(){
 	canShoot = rand() % 3500;
 	if (canShoot == 0){
 		Globals globals;
 		//you can shoot
-		//cout << "SHOOT" << endl;
 		Projectile bullet = Projectile(xPos(), yPos(), 0, 7, true);
 		globals.AddProjectile(bullet);
 	}
@@ -59,10 +73,10 @@ void Enemy::Draw(RenderWindow & win){
 	win.draw(GetShape());
 }
 
+///check for collision with bullets
 void Enemy::CheckBulletCollisions(){
-	FloatRect intersection;
 	for (size_t i = 0; i < projectileList.size(); i++){
-		if (projectileList[i].GetCollider().intersects(GetCollider(), intersection)) {
+		if (projectileList[i].GetCollider().intersects(GetCollider())) {
 			//valid collision
 			if (projectileList[i].GetIsEnemy()) {
 				//do nothing, friendly fire has no effect

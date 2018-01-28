@@ -3,7 +3,6 @@
 #include "DrawableObj.h"
 #include "Globals.h"
 
-//#include <SFML\Graphics.hpp>
 
 class Player : public DrawableObj {
 public:
@@ -12,6 +11,7 @@ public:
 	void Move() override;
 	void Draw(RenderWindow &win);
 	FloatRect GetCollider() { return collider; };
+	void ResetHealth() { health = 2; };
 	float xPos();
 	float yPos();
 
@@ -20,8 +20,8 @@ private:
 	void TakeDamage();
 	void CheckBulletCollisions();
 	FloatRect collider;
-	float xSize = 20;
-	float ySize = 20;
+	float xSize = 30;
+	float ySize = 30;
 	float speed = 7.f;
 	int updateIndex;
 	int shotDelay = 10;

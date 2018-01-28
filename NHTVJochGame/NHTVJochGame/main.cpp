@@ -26,6 +26,10 @@ Globals globals;
 int enemyNumberX = 8;
 int enemyNumberY = 4;
 
+bool pressed;
+bool oldPressed;
+bool keyReleased;
+
 int main() {
 	RenderWindow window{ VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Space Reflectors" };
 	window.setFramerateLimit(60);
@@ -36,7 +40,7 @@ int main() {
 
 	//Globals globals;
 	Player player = Player(WINDOW_WIDTH / 2.f, WINDOW_HEIGHT / 1.2f);
-	globals.AddToObjList(player);
+	//globals.AddToObjList(player);
 	
 	for (size_t i = 0; i < enemyNumberX; i++){
 		for (size_t j = 0; j < enemyNumberY; j++){
@@ -56,7 +60,7 @@ int main() {
 		}else if (gameState == 1){
 			//GAMEPLAY
 			if (enemyList.size() == 0) {
-				globals.GameOver(true, 10);
+				globals.GameOver(true);
 			}
 
 			//update & draw player
@@ -100,7 +104,7 @@ int main() {
 }
 
 void GameOverScreen(RenderWindow &win) {
-	if (Keyboard::isKeyPressed(Keyboard::Key::Return)) {
+	if (Keyboard::isKeyPressed(Keyboard::Key::Space)) {
 		globals.ResetScore();
 		Reset();
 		gameState = 0;
@@ -120,7 +124,6 @@ void GameOverScreen(RenderWindow &win) {
 
 	stringstream scoreStream;
 	scoreStream << score;
-	//String scoreString = "Score: " + score;
 	scoreText.setFont(font);
 	scoreText.setString("Score: " + scoreStream.str());
 	scoreText.setOutlineColor(Color::White);
@@ -145,14 +148,31 @@ void TutorialScreen(RenderWindow &win) {
 
 }
 
-void StartScreen(RenderWindow &win) {
+void StartScreen(RenderWindow &win) {			
 	if (Keyboard::isKeyPressed(Keyboard::Key::Return)){
 		gameState = 1;
-	}
+		pressed = true;
+	}else
+		pressed = false;
 
 	if (Keyboard::isKeyPressed(Keyboard::Key::Space)) {
-		gameState = 4;
+		if(keyReleased)
+			gameState = 4;
+
+		pressed = true;
+	}else
+		pressed = false;
+	
+	if (oldPressed) {
+		if (!pressed) {
+			keyReleased = true;
+			pressed = false;
+			oldPressed = false;
+		}
 	}
+
+	oldPressed = pressed;
+
 
 	nameText.setFont(font);
 	nameText.setString("By Jochem Beltman");
@@ -188,7 +208,7 @@ void StartScreen(RenderWindow &win) {
 
 void Reset() {
 	Player player = Player(WINDOW_WIDTH / 2.f, WINDOW_HEIGHT / 1.2f);
-	globals.AddToObjList(player);
+	//globals.AddToObjList(player);
 
 	for (size_t i = 0; i < enemyNumberX; i++) {
 		for (size_t j = 0; j < enemyNumberY; j++) {
