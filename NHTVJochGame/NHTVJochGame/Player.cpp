@@ -11,17 +11,21 @@ Player::Player(float mX, float mY) {
 	GetShape().setOrigin(xSize / 2.f, ySize / 2.f);
 	collider = GetShape().getGlobalBounds();
 	updateIndex = globals.AddToUpdateList([this]() {Update(); });
-	//globals.AddToObjList(this->GetBase());
-	//globals.AddToObjList(this);
 	shotDelay = 10;
+	health = 2;
 }
 
 void Player::Update(){
-	GetCollider() = GetShape().getGlobalBounds();
-	Move();
-
+	//cooldown shooting
 	if (shotDelay < 0) shotDelay = 0;
 	else shotDelay--;
+	//cooldown i-frames
+	if (invincibleTimer < 0) invincibleTimer = 0;
+	else invincibleTimer--;
+
+	GetCollider() = GetShape().getGlobalBounds();
+	CheckBulletCollisions();
+	Move();
 	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && (shotDelay == 0)) {
 		Shoot();
@@ -31,13 +35,9 @@ void Player::Update(){
 ///moves player shape & checks if it doesnt go off screen
 void Player::Move() {
 	GetShape().move(velocity);
-
-	//cout << collider.left << endl;
-
+	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && (xPos() - (collider.width / 2)) > 0) {
 		velocity.x = -speed;
-
-		//cout << "not colliding with left side" << endl;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) && (xPos() + (collider.width / 2)) < WINDOW_WIDTH) {
 		velocity.x = speed;
@@ -49,7 +49,30 @@ void Player::Move() {
 void Player::Shoot() {
 	Projectile bullet = Projectile(xPos(), yPos(), velocity.x, -7.f, false);
 	globals.AddProjectile(bullet);
-	shotDelay = 10;
+	shotDelay = 30;
+}
+
+void Player::TakeDamage(){
+	invincibleTimer = 60;
+	health--;
+	if (health < 0){
+		//gameover
+		globals.GameOver(false, 10);
+	}
+}
+
+void Player::CheckBulletCollisions(){
+	for (size_t i = 0; i < projectileList.size(); i++){
+		if (GetShape().getGlobalBounds().intersects(projectileList[i].GetShape().getGlobalBounds())){
+			if (projectileList[i].GetIsEnemy()){
+				//cout << "PLAYER COLLISION WITH ENEMY BULLET " << endl;
+				if (invincibleTimer == 0) {
+					TakeDamage();
+					projectileList[i].Kill();
+				}
+			}
+		}
+	}
 }
 
 void Player::Draw(RenderWindow & win){

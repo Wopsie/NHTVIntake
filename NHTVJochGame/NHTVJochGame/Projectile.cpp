@@ -17,10 +17,11 @@ Projectile::Projectile(float mX, float mY, float velX, float velY, bool isEnemy)
 	if (isEnemy)
 		maxBounceCount = 0;
 	else
-		maxBounceCount = 2;
+		maxBounceCount = 1;
 }
 
 void Projectile::Update(){
+	//cout << isEnemyBullet << endl;
 	GetCollider() = GetShape().getGlobalBounds();
 	Move();
 	CheckScreenEdge();
@@ -81,7 +82,7 @@ float Projectile::GetMovementDirectionInDegrees(sf::Vector2f vec){
 }
 
 void Projectile::Kill(){
-	cout << "Killing bullet" << endl;
+	//cout << "Killing bullet" << endl;
 	isAlive = false;
 }
 

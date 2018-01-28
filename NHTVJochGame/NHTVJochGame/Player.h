@@ -18,11 +18,14 @@ public:
 private:
 	void Shoot();
 	void TakeDamage();
+	void CheckBulletCollisions();
 	FloatRect collider;
 	float xSize = 20;
 	float ySize = 20;
 	float speed = 7.f;
 	int updateIndex;
 	int shotDelay = 10;
+	int invincibleTimer = 60;
+	int health = 2;
 	Globals globals;
 };

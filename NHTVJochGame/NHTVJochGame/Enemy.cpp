@@ -42,16 +42,10 @@ void Enemy::Move(){
 		moveTimer = 60;
 		xMoveCount++;
 	}
-
-	//velocity is on timer
-	//every 1 seconds enemies move
-	//timer that counts down from 60
-	//if it is 0
-		//move enemies & start counting again
 }
 
 void Enemy::Shoot(){
-	canShoot = rand() % 5000;
+	canShoot = rand() % 3500;
 	if (canShoot == 0){
 		Globals globals;
 		//you can shoot
@@ -84,5 +78,7 @@ void Enemy::CheckBulletCollisions(){
 }
 
 void Enemy::Kill(){
+	Globals globals;
+	globals.AddScore();
 	isAlive = false;
 }

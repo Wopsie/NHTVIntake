@@ -16,10 +16,16 @@ extern std::vector<std::function<void()>> updateList;
 extern std::vector<DrawableObj> objList;
 extern std::vector<Projectile> projectileList;
 extern std::vector<Enemy> enemyList;
+extern int gameState;
+extern int score;
+extern bool playerWon;
 
 struct Globals {
 	int AddToUpdateList(std::function<void()>);
 	void AddToObjList(DrawableObj&);
 	void AddProjectile(Projectile&);
 	void AddEnemy(Enemy&);
+	void GameOver(bool win, int score);
+	void AddScore();
+	void ResetScore();
 };
