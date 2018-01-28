@@ -22,3 +22,4 @@ void Globals::AddProjectile(Projectile & bullet){
 void Globals::AddEnemy(Enemy & enemy){
 	enemyList.push_back(enemy);
 }
+

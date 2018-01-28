@@ -1,3 +1,8 @@
-﻿  Enemy.cpp
+﻿  main.cpp
+d:\cppprojs\nhtvassignment\nhtvintake\nhtvjochgame\nhtvjochgame\main.cpp(23): warning C4018: '<': signed/unsigned mismatch
+d:\cppprojs\nhtvassignment\nhtvintake\nhtvjochgame\nhtvjochgame\main.cpp(24): warning C4018: '<': signed/unsigned mismatch
+d:\cppprojs\nhtvassignment\nhtvintake\nhtvjochgame\nhtvjochgame\main.cpp(25): warning C4244: 'argument': conversion from '::size_t' to 'float', possible loss of data
+  Globals.cpp
+  Generating Code...
   NHTVJochGame.vcxproj -> D:\cppProjs\NHTVAssignment\NHTVIntake\NHTVJochGame\Debug\NHTVJochGame.exe
   NHTVJochGame.vcxproj -> D:\cppProjs\NHTVAssignment\NHTVIntake\NHTVJochGame\Debug\NHTVJochGame.pdb (Partial PDB)

@@ -17,10 +17,17 @@ public:
 	bool getAlive() { return isAlive; };
 
 private:
+	void Shoot();
 	void Move();
 	RectangleShape shape;
 	FloatRect collider;
+	Vector2f velocity;
 	bool isAlive;
 	float xSize = 60;
 	float ySize = 40;
+	float speed = 1.f;
+	int moveTimer = 60;
+	int xMoveCount;
+	int canShoot;
+	bool goLeft;
 };
