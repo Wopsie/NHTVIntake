@@ -21,6 +21,7 @@ Text openTutorialText;
 Text tutorialText;
 Text GameoverText;
 Text scoreText;
+Text liveScoreText;
 Globals globals;
 
 int enemyNumberX = 8;
@@ -33,6 +34,12 @@ bool keyReleased;
 int main() {
 	RenderWindow window{ VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Space Reflectors" };
 	window.setFramerateLimit(60);
+
+	//for displaying score during gameplay
+	liveScoreText.setFont(font);
+	liveScoreText.setOutlineColor(Color::White);
+	liveScoreText.setCharacterSize(15);
+	liveScoreText.setPosition(0, 0);
 
 	if (!font.loadFromFile("Resources/Font/Xerox_Sans_Serif_Wide_Bold.ttf")) {
 		cout << "cant load font" << endl;
@@ -62,6 +69,11 @@ int main() {
 			if (enemyList.size() == 0) {
 				globals.GameOver(true);
 			}
+
+			stringstream scoreStream;
+			scoreStream << score;
+			liveScoreText.setString("Score: " + scoreStream.str());
+			window.draw(liveScoreText);
 
 			//update & draw player
 			player.Update();

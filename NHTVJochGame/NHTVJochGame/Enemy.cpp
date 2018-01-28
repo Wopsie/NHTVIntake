@@ -82,6 +82,8 @@ void Enemy::CheckBulletCollisions(){
 				//do nothing, friendly fire has no effect
 			}else if(projectileList[i].getAlive() && projectileList[i].GetBounceCount() > 0){
 				//bullet can hurt enemy
+				Globals globals;
+				globals.AddScore();
 				Kill();
 			}else {
 				//bullet cannot hurt enemy
@@ -92,7 +94,5 @@ void Enemy::CheckBulletCollisions(){
 }
 
 void Enemy::Kill(){
-	Globals globals;
-	globals.AddScore();
 	isAlive = false;
 }

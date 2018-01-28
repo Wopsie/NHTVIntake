@@ -21,7 +21,6 @@ Projectile::Projectile(float mX, float mY, float velX, float velY, bool isEnemy)
 }
 
 void Projectile::Update(){
-	//cout << isEnemyBullet << endl;
 	GetCollider() = GetShape().getGlobalBounds();
 	Move();
 	CheckScreenEdge();
@@ -35,7 +34,6 @@ void Projectile::Move(){
 void Projectile::CheckScreenEdge(){
 	//horizontal
 	if (xPos() - (collider.width / 2) < 0){
-		//cout << "Bouncing on left or something haha" << endl;
 		bounceCount++;
 		CheckBounces();
 		velocity.x = -velocity.x;
@@ -69,7 +67,6 @@ void Projectile::CheckScreenEdge(){
 }
 
 void Projectile::CheckBounces(){
-	//cout << bounceCount << endl;
 	if (bounceCount > maxBounceCount) {
 		//remove object from memory
 		//will be interesting to see what happens to the lists
@@ -82,7 +79,6 @@ float Projectile::GetMovementDirectionInDegrees(sf::Vector2f vec){
 }
 
 void Projectile::Kill(){
-	//cout << "Killing bullet" << endl;
 	isAlive = false;
 }
 
