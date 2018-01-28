@@ -12,7 +12,7 @@ constexpr int WINDOW_HEIGHT = 600;
 constexpr double PI = 3.14159265358979323846;
 
 //global "list" for everything that needs to be done each frame
-extern std::vector<std::function<void()>> updateList;
+//extern std::vector<std::function<void()>> updateList;
 extern std::vector<Projectile> projectileList;
 extern std::vector<Enemy> enemyList;
 
@@ -21,7 +21,7 @@ extern int score;
 extern bool playerWon;
 
 struct Globals {
-	int AddToUpdateList(std::function<void()>);
+	//int AddToUpdateList(std::function<void()>);
 	void AddProjectile(Projectile&);
 	void AddEnemy(Enemy&);
 	void GameOver(bool win);

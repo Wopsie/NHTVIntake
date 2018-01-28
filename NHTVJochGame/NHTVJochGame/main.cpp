@@ -45,9 +45,7 @@ int main() {
 		cout << "cant load font" << endl;
 	}
 
-	//Globals globals;
 	Player player = Player(WINDOW_WIDTH / 2.f, WINDOW_HEIGHT / 1.2f);
-	//globals.AddToObjList(player);
 	
 	for (size_t i = 0; i < enemyNumberX; i++){
 		for (size_t j = 0; j < enemyNumberY; j++){
@@ -116,7 +114,7 @@ int main() {
 }
 
 void GameOverScreen(RenderWindow &win) {
-	if (Keyboard::isKeyPressed(Keyboard::Key::Space)) {
+	if (Keyboard::isKeyPressed(Keyboard::Key::BackSpace)) {
 		globals.ResetScore();
 		Reset();
 		gameState = 0;
@@ -184,7 +182,6 @@ void StartScreen(RenderWindow &win) {
 	}
 
 	oldPressed = pressed;
-
 
 	nameText.setFont(font);
 	nameText.setString("By Jochem Beltman");

@@ -8,11 +8,12 @@ int gameState;
 int score;
 bool playerWon;
 
+/*
 ///add method to update list & return index 
 int Globals::AddToUpdateList(std::function<void()> update){
 	updateList.push_back(update);
 	return updateList.size();
-}
+}*/
 
 void Globals::AddProjectile(Projectile & bullet){
 	projectileList.push_back(bullet);

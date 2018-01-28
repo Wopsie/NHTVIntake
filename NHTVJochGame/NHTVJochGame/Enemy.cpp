@@ -60,7 +60,14 @@ void Enemy::Move(){
 
 ///enemy shoot bullet
 void Enemy::Shoot(){
-	canShoot = rand() % 3500;
+
+	if (enemyList.size() > 25){
+		canShoot = rand() % 3500;
+	}else if (enemyList.size() < 25 && enemyList.size() > 10){
+		canShoot = rand() % 2500;
+	}else if (enemyList.size() < 25 && enemyList.size() < 9){
+		canShoot = rand() % 500;
+	}
 	if (canShoot == 0){
 		Globals globals;
 		//you can shoot

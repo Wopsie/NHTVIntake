@@ -10,7 +10,7 @@ Player::Player(float mX, float mY) {
 	GetShape().setFillColor(sf::Color::Blue);
 	GetShape().setOrigin(xSize / 2.f, ySize / 2.f);
 	collider = GetShape().getGlobalBounds();
-	updateIndex = globals.AddToUpdateList([this]() {Update(); });
+	//updateIndex = globals.AddToUpdateList([this]() {Update(); });
 	shotDelay = 10;
 	health = 2;
 }
