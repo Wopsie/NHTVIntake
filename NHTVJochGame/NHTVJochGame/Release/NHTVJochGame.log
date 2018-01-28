@@ -1,5 +1,8 @@
-﻿  main.cpp
+﻿  Enemy.cpp
+  Player.cpp
   Generating code
-  All 21 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  4 of 455 functions ( 0.9%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    16 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  NHTVJochGame.vcxproj -> D:\cppProjs\NHTVAssignment\NHTVJochGame\Release\NHTVJochGame.exe
+  NHTVJochGame.vcxproj -> D:\cppProjs\NHTVAssignment\NHTVIntake\NHTVJochGame\Release\NHTVJochGame.exe

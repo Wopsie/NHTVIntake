@@ -4,13 +4,14 @@
 
 class Projectile {
 public:
-	Projectile(float, float, float, float);
+	Projectile(float, float, float, float, bool);
 	void Update();
 	void Move();
 	void Draw(RenderWindow &win);
 	void Kill();
 	RectangleShape& GetShape() { return shape; };
 	FloatRect& GetCollider() { return collider; };
+	bool& GetIsEnemy() { return isEnemyBullet; };
 	float xPos();
 	float yPos();
 	int GetBounceCount() { return bounceCount; };
@@ -28,5 +29,7 @@ private:
 	float speed = 1.f;
 	int updateIndex;
 	int bounceCount = 0;
+	int maxBounceCount;
 	bool isAlive;
+	bool isEnemyBullet;
 };

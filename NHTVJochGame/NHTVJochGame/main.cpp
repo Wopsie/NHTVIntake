@@ -26,18 +26,17 @@ int main() {
 			globals.AddEnemy(enemy);
 		}
 	}
-	
-	
 
 	//main loop
 	while (true) {
 		window.clear(Color::Black);
 		if (Keyboard::isKeyPressed(Keyboard::Key::Escape)) break;
 
+		//update & draw player
 		player.Update();
 		player.Draw(window);
 
-		
+		//update & draw enemies
 		for (size_t i = 0; i < enemyList.size(); i++) {
 			if (enemyList[i].getAlive()) {
 				enemyList[i].Update();
@@ -46,7 +45,6 @@ int main() {
 			else
 				enemyList.erase(enemyList.begin() + i);
 		}
-		
 
 		//update & draw bullets
 		for (size_t i = 0; i < projectileList.size(); i++){
@@ -60,14 +58,8 @@ int main() {
 		}
 
 
-		
-
-
-		//update & draw enemies
-
 		window.display();
 	}
-
 	return 0;
 }
 

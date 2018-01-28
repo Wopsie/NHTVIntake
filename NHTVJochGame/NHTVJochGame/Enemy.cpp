@@ -53,10 +53,11 @@ void Enemy::Move(){
 void Enemy::Shoot(){
 	canShoot = rand() % 5000;
 	if (canShoot == 0){
+		Globals globals;
 		//you can shoot
-		cout << "SHOOT" << endl;
-		//Projectile bullet = Projectile(xPos(), yPos(), 0, 7);
-		//globals.AddProjectile(bullet);
+		//cout << "SHOOT" << endl;
+		Projectile bullet = Projectile(xPos(), yPos(), 0, 7, true);
+		globals.AddProjectile(bullet);
 	}
 }
 
@@ -69,23 +70,19 @@ void Enemy::CheckBulletCollisions(){
 	for (size_t i = 0; i < projectileList.size(); i++){
 		if (projectileList[i].GetCollider().intersects(GetCollider(), intersection)) {
 			//valid collision
-			cout << "Collision" << endl;
-			if (projectileList[i].getAlive() && projectileList[i].GetBounceCount() > 0) {
+			if (projectileList[i].GetIsEnemy()) {
+				//do nothing, friendly fire has no effect
+			}else if(projectileList[i].getAlive() && projectileList[i].GetBounceCount() > 0){
 				//bullet can hurt enemy
-				cout << "Destroy enemy" << endl;
 				Kill();
 			}else {
 				//bullet cannot hurt enemy
-				cout << "destroy bullet" << endl;
 				projectileList[i].Kill();
 			}
 		}
 	}
 }
 
-
-
 void Enemy::Kill(){
 	isAlive = false;
 }
-

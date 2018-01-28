@@ -23,6 +23,6 @@ private:
 	float ySize = 20;
 	float speed = 7.f;
 	int updateIndex;
-	int shotDelay;
+	int shotDelay = 10;
 	Globals globals;
 };

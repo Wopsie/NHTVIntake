@@ -13,6 +13,7 @@ Player::Player(float mX, float mY) {
 	updateIndex = globals.AddToUpdateList([this]() {Update(); });
 	//globals.AddToObjList(this->GetBase());
 	//globals.AddToObjList(this);
+	shotDelay = 10;
 }
 
 void Player::Update(){
@@ -21,7 +22,7 @@ void Player::Update(){
 
 	if (shotDelay < 0) shotDelay = 0;
 	else shotDelay--;
-
+	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && (shotDelay == 0)) {
 		Shoot();
 	}
@@ -46,7 +47,7 @@ void Player::Move() {
 
 ///pew
 void Player::Shoot() {
-	Projectile bullet = Projectile(xPos(), yPos(), velocity.x, -7.f);
+	Projectile bullet = Projectile(xPos(), yPos(), velocity.x, -7.f, false);
 	globals.AddProjectile(bullet);
 	shotDelay = 10;
 }

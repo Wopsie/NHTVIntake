@@ -3,7 +3,7 @@
 #include <iostream>
 #include <algorithm>
 
-Projectile::Projectile(float mX, float mY, float velX, float velY) {
+Projectile::Projectile(float mX, float mY, float velX, float velY, bool isEnemy) {
 	isAlive = true;
 	velocity = Vector2f(velX, velY);
 	GetShape().setPosition(mX, mY);
@@ -13,6 +13,11 @@ Projectile::Projectile(float mX, float mY, float velX, float velY) {
 	GetShape().setRotation(GetMovementDirectionInDegrees(velocity));
 	collider = GetShape().getGlobalBounds();
 	bounceCount = 0;
+	isEnemyBullet = isEnemy;
+	if (isEnemy)
+		maxBounceCount = 0;
+	else
+		maxBounceCount = 2;
 }
 
 void Projectile::Update(){
@@ -64,7 +69,7 @@ void Projectile::CheckScreenEdge(){
 
 void Projectile::CheckBounces(){
 	//cout << bounceCount << endl;
-	if (bounceCount > 2) {
+	if (bounceCount > maxBounceCount) {
 		//remove object from memory
 		//will be interesting to see what happens to the lists
 		Kill();
