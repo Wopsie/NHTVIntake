@@ -15,19 +15,8 @@ int main() {
 	globals.AddToObjList(player);
 	//main loop
 	while (true) {
-
 		window.clear(Color::Black);
 		if (Keyboard::isKeyPressed(Keyboard::Key::Escape)) break;
-
-		//bullet.Update();
-		//window.draw(bullet.GetShape());
-		/*
-		for (size_t i = 0; i < objList.size(); i++){
-			//objList[i].Update();
-			updateList[i]();
-			//objList[i].Draw(window);
-		}
-		*/
 
 		player.Update();
 		player.Draw(window);
@@ -43,62 +32,13 @@ int main() {
 			}
 		}
 
+		//update & draw enemies
+
 		window.display();
 	}
 
 	return 0;
 }
-
-
-/*
-extern vector<const Drawable*> drawList;
-
-struct myStruct {
-void AddDrawable(const Drawable &drawable);
-};
-
-class myDrawable {
-public:
-myDrawable();
-RectangleShape shape;
-};
-myDrawable::myDrawable() {
-shape.setPosition(0, 0);
-shape.setSize({ 0, 0 });
-shape.setFillColor(sf::Color::Blue);
-shape.setOrigin(0, 0);
-myStruct mystruct;
-mystruct.AddDrawable(shape);
-}
-
-void myStruct::AddDrawable(const Drawable &drawable) {
-drawList.push_back(&drawable);
-}
-
-int main() {
-sf::RenderWindow window{ sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Reflective lil game" };
-myDrawable newDrawable;
-vector<const Drawable*> drawList;
-while (true) {
-window.clear(sf::Color::Black);
-//cout << "updating" << endl;
-
-if (Keyboard::isKeyPressed(Keyboard::Key::Space)) {
-myDrawable runtimeDrawable;
-cout << "pressed space" << endl;
-}
-
-for (size_t i = 0; i < drawList.size(); i++){
-cout << "Drawing " << drawList.size() << endl;
-window.draw(*drawList[i]);
-}
-
-}
-window.display();
-return 0;
-}
-*/
-
 
 /*
 using namespace std;

@@ -11,7 +11,7 @@ Projectile::Projectile(float mX, float mY, float velX, float velY) {
 	GetShape().setFillColor(sf::Color::Red);
 	GetShape().setOrigin(xSize / 2.f, ySize / 2.f);
 	GetShape().setRotation(GetMovementDirectionInDegrees(velocity));
-	//updateIndex = projectileList.size();
+	collider = GetShape().getGlobalBounds();
 	bounceCount = 0;
 }
 
@@ -25,10 +25,10 @@ void Projectile::Move(){
 	GetShape().move(velocity);
 }
 
-void Projectile::CheckScreenEdge()
-{
-	//horizontal
-	if (leftBox() < 0) {
+void Projectile::CheckScreenEdge(){
+
+	if (xPos() - (collider.width / 2) < 0){
+		//cout << "Bouncing on left or something haha" << endl;
 		bounceCount++;
 		CheckBounces();
 		velocity.x = -velocity.x;
@@ -36,7 +36,7 @@ void Projectile::CheckScreenEdge()
 		GetShape().setRotation(GetMovementDirectionInDegrees(velocity));
 	}
 
-	if (rightBox() > WINDOW_WIDTH) {
+	if (xPos() + (collider.width / 2) > WINDOW_WIDTH){
 		bounceCount++;
 		CheckBounces();
 		velocity.x = -velocity.x;
@@ -44,8 +44,7 @@ void Projectile::CheckScreenEdge()
 		GetShape().setRotation(GetMovementDirectionInDegrees(velocity));
 	}
 
-	//vertical
-	if (topBox() < 0) {
+	if (yPos() - (collider.width / 2) < 0){
 		bounceCount++;
 		CheckBounces();
 		velocity.y = -velocity.y;
@@ -53,7 +52,7 @@ void Projectile::CheckScreenEdge()
 		GetShape().setRotation(GetMovementDirectionInDegrees(velocity));
 	}
 
-	if (botBox() > WINDOW_HEIGHT) {
+	if (yPos() + (collider.width / 2) > WINDOW_HEIGHT){
 		bounceCount++;
 		CheckBounces();
 		velocity.y = -velocity.y;
@@ -92,96 +91,3 @@ float Projectile::xPos() {
 float Projectile::yPos() {
 	return GetShape().getPosition().y;
 }
-
-float Projectile::leftBox() {
-	return xPos() - (GetShape().getSize().x / 2.f);
-}
-
-float Projectile::rightBox() {
-	return xPos() + (GetShape().getSize().x / 2.f);
-}
-
-float Projectile::topBox() {
-	return yPos() - (GetShape().getSize().y / 2.f);
-}
-
-float Projectile::botBox() {
-	return yPos() + (GetShape().getSize().y / 2.f);
-}
-
-/*
-Projectile::Projectile(float mX, float mY, float velX, float velY){
-	velocity = sf::Vector2f(velX, velY);
-	GetShape().setPosition(mX, mY);
-	GetShape().setSize({ xSize, ySize });
-	GetShape().setFillColor(sf::Color::Red);
-	GetShape().setOrigin(xSize / 2.f, ySize / 2.f);
-	float f = leftBox();
-	
-	Start();
-}
-
-void Projectile::Start(){
-	Globals globals;
-	updateIndex = globals.AddToUpdateList([this]() {Update(); });
-	//globals.AddDrawable(GetShape());
-}
-
-void Projectile::Destroy(){
-
-}
-
-void Projectile::Update(){
-	GetShape().move(velocity);
-	CheckScreenEdge();
-	//std::cout << "Calling projectile::Update" << std::endl;
-
-	//window.draw(GetShape());
-}
-
-void Projectile::CheckScreenEdge()
-{
-	//horizontal
-	if (leftBox() < 0){
-		velocity.x = -velocity.x;
-	}
-
-	if (rightBox() > WINDOW_WIDTH){
-		velocity.x = -velocity.x;
-	}
-
-	//vertical
-	if (topBox() < 0) {
-		velocity.y = -velocity.y;
-	}
-
-	if (botBox() > WINDOW_HEIGHT) {
-		velocity.y = -velocity.y;
-	}
-}
-
-///getter methods for collision
-float Projectile::xPos(){
-	return GetShape().getPosition().x;
-}
-
-float Projectile::yPos(){
-	return GetShape().getPosition().y;
-}
-
-float Projectile::leftBox(){
-	return xPos() - (GetShape().getSize().x / 2.f);
-}
-
-float Projectile::rightBox(){
-	return xPos() + (GetShape().getSize().x / 2.f);
-}
-
-float Projectile::topBox(){
-	return yPos() - (GetShape().getSize().y / 2.f);
-}
-
-float Projectile::botBox(){
-	return yPos() + (GetShape().getSize().y / 2.f);
-}
-*/
