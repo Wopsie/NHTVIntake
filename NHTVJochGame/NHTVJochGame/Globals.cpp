@@ -4,6 +4,7 @@
 std::vector<std::function<void()>> updateList;
 std::vector<DrawableObj> objList;
 std::vector<Projectile> projectileList;
+std::vector<Enemy> enemyList;
 
 ///add method to update list & return index 
 int Globals::AddToUpdateList(std::function<void()> update){
@@ -16,4 +17,8 @@ void Globals::AddToObjList(DrawableObj & objref){
 
 void Globals::AddProjectile(Projectile & bullet){
 	projectileList.push_back(bullet);
+}
+
+void Globals::AddEnemy(Enemy & enemy){
+	enemyList.push_back(enemy);
 }

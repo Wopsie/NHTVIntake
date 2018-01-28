@@ -1,0 +1,38 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   NHTVJochGame/.vs/NHTVJochGame/v15/.suo
+#	modified:   NHTVJochGame/.vs/NHTVJochGame/v15/Browse.VC.db
+#	modified:   NHTVJochGame/.vs/NHTVJochGame/v15/ipch/AutoPCH/342240e0f3c089fb/MAIN.ipch
+#	modified:   NHTVJochGame/.vs/NHTVJochGame/v15/ipch/AutoPCH/634f73fa987fdae8/GLOBALS.ipch
+#	modified:   NHTVJochGame/.vs/NHTVJochGame/v15/ipch/AutoPCH/6c402f78b35c3de2/ENEMY.ipch
+#	modified:   NHTVJochGame/.vs/NHTVJochGame/v15/ipch/AutoPCH/83f77f2beea610c3/PLAYER.ipch
+#	modified:   NHTVJochGame/.vs/NHTVJochGame/v15/ipch/AutoPCH/b65d5e87f27163d5/PROJECTILE.ipch
+#	modified:   NHTVJochGame/Debug/NHTVJochGame.exe
+#	modified:   NHTVJochGame/Debug/NHTVJochGame.ilk
+#	modified:   NHTVJochGame/Debug/NHTVJochGame.pdb
+#	modified:   NHTVJochGame/NHTVJochGame/Debug/Enemy.obj
+#	modified:   NHTVJochGame/NHTVJochGame/Debug/Globals.obj
+#	modified:   NHTVJochGame/NHTVJochGame/Debug/NHTVJochGame.log
+#	modified:   NHTVJochGame/NHTVJochGame/Debug/NHTVJochGame.tlog/CL.read.1.tlog
+#	modified:   NHTVJochGame/NHTVJochGame/Debug/NHTVJochGame.tlog/CL.write.1.tlog
+#	modified:   NHTVJochGame/NHTVJochGame/Debug/Player.obj
+#	modified:   NHTVJochGame/NHTVJochGame/Debug/Projectile.obj
+#	modified:   NHTVJochGame/NHTVJochGame/Debug/main.obj
+#	modified:   NHTVJochGame/NHTVJochGame/Debug/vc141.idb
+#	modified:   NHTVJochGame/NHTVJochGame/Debug/vc141.pdb
+#	modified:   NHTVJochGame/NHTVJochGame/Enemy.cpp
+#	modified:   NHTVJochGame/NHTVJochGame/Enemy.h
+#	modified:   NHTVJochGame/NHTVJochGame/Globals.cpp
+#	modified:   NHTVJochGame/NHTVJochGame/Globals.h
+#	modified:   NHTVJochGame/NHTVJochGame/Player.cpp
+#	modified:   NHTVJochGame/NHTVJochGame/Player.h
+#	modified:   NHTVJochGame/NHTVJochGame/Projectile.cpp
+#	modified:   NHTVJochGame/NHTVJochGame/Projectile.h
+#	modified:   NHTVJochGame/NHTVJochGame/main.cpp
+#
+

@@ -8,8 +8,10 @@ public:
 	Enemy(float mX, float mY);
 	void Update();
 	void Draw(RenderWindow &win);
-	RectangleShape& GetShape() { return shape; };
 	void Kill();
+	void CheckBulletCollisions();
+	RectangleShape& GetShape() { return shape; };
+	FloatRect& GetCollider() { return collider; };
 	float xPos() { return GetShape().getPosition().x; };
 	float yPos() { return GetShape().getPosition().y; };
 	bool getAlive() { return isAlive; };

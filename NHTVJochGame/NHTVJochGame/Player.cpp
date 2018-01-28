@@ -16,6 +16,7 @@ Player::Player(float mX, float mY) {
 }
 
 void Player::Update(){
+	GetCollider() = GetShape().getGlobalBounds();
 	Move();
 
 	if (shotDelay < 0) shotDelay = 0;
@@ -45,9 +46,9 @@ void Player::Move() {
 
 ///pew
 void Player::Shoot() {
-	Projectile bullet = Projectile(xPos(), yPos(), velocity.x, -0.05f);
+	Projectile bullet = Projectile(xPos(), yPos(), velocity.x, -7.f);
 	globals.AddProjectile(bullet);
-	shotDelay = 1000;
+	shotDelay = 10;
 }
 
 void Player::Draw(RenderWindow & win){

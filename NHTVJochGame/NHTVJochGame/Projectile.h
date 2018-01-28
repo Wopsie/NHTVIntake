@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-//#include <math.h>
 #include "DrawableObj.h"
 
 class Projectile {
@@ -9,16 +8,18 @@ public:
 	void Update();
 	void Move();
 	void Draw(RenderWindow &win);
+	void Kill();
 	RectangleShape& GetShape() { return shape; };
+	FloatRect& GetCollider() { return collider; };
 	float xPos();
 	float yPos();
+	int GetBounceCount() { return bounceCount; };
 	bool getAlive() { return isAlive; };
 
 private:
 	void CheckScreenEdge();
 	void CheckBounces();
 	float GetMovementDirectionInDegrees(Vector2f);
-	void Kill();
 	RectangleShape shape;
 	FloatRect collider;
 	Vector2f velocity;

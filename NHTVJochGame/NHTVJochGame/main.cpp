@@ -8,11 +8,15 @@ using namespace sf;
 
 int main() {
 	RenderWindow window{ VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Reflective lil game" };
+	window.setFramerateLimit(60);
 
 	Globals globals;
-	//Projectile bullet = Projectile(WINDOW_WIDTH /2.f, WINDOW_HEIGHT /2.f, 0.05f, 0.05f);
 	Player player = Player(WINDOW_WIDTH / 2.f, WINDOW_HEIGHT / 1.2f);
 	globals.AddToObjList(player);
+
+	Enemy enemy = Enemy(WINDOW_WIDTH / 2.f, WINDOW_HEIGHT / 2.f);
+	globals.AddEnemy(enemy);
+
 	//main loop
 	while (true) {
 		window.clear(Color::Black);
@@ -20,6 +24,16 @@ int main() {
 
 		player.Update();
 		player.Draw(window);
+
+		for (size_t i = 0; i < enemyList.size(); i++) {
+			
+			if (enemyList[i].getAlive()) {
+				enemyList[i].Update();
+				enemyList[i].Draw(window);
+			}
+			else
+				enemyList.erase(enemyList.begin() + i);
+		}
 
 		//update & draw bullets
 		for (size_t i = 0; i < projectileList.size(); i++){
@@ -31,6 +45,10 @@ int main() {
 				projectileList.erase(projectileList.begin()+i);
 			}
 		}
+
+
+		
+
 
 		//update & draw enemies
 

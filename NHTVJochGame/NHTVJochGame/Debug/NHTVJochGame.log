@@ -1,4 +1,3 @@
-﻿  Projectile.cpp
-d:\cppprojs\nhtvassignment\nhtvintake\nhtvjochgame\nhtvjochgame\globals.h(11): warning C4305: 'initializing': truncation from 'double' to 'const float'
+﻿  Enemy.cpp
   NHTVJochGame.vcxproj -> D:\cppProjs\NHTVAssignment\NHTVIntake\NHTVJochGame\Debug\NHTVJochGame.exe
   NHTVJochGame.vcxproj -> D:\cppProjs\NHTVAssignment\NHTVIntake\NHTVJochGame\Debug\NHTVJochGame.pdb (Partial PDB)

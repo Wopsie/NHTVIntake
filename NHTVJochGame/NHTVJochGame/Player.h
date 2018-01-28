@@ -11,6 +11,7 @@ public:
 	void Update() override;
 	void Move() override;
 	void Draw(RenderWindow &win);
+	FloatRect GetCollider() { return collider; };
 	float xPos();
 	float yPos();
 
@@ -20,7 +21,7 @@ private:
 	FloatRect collider;
 	float xSize = 20;
 	float ySize = 20;
-	float speed = 0.05f;
+	float speed = 7.f;
 	int updateIndex;
 	int shotDelay;
 	Globals globals;

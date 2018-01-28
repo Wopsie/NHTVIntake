@@ -16,6 +16,7 @@ Projectile::Projectile(float mX, float mY, float velX, float velY) {
 }
 
 void Projectile::Update(){
+	GetCollider() = GetShape().getGlobalBounds();
 	Move();
 	CheckScreenEdge();
 }
@@ -26,7 +27,7 @@ void Projectile::Move(){
 }
 
 void Projectile::CheckScreenEdge(){
-
+	//horizontal
 	if (xPos() - (collider.width / 2) < 0){
 		//cout << "Bouncing on left or something haha" << endl;
 		bounceCount++;
@@ -43,7 +44,7 @@ void Projectile::CheckScreenEdge(){
 		//speed += 0.0001f;
 		GetShape().setRotation(GetMovementDirectionInDegrees(velocity));
 	}
-
+	//vertical
 	if (yPos() - (collider.width / 2) < 0){
 		bounceCount++;
 		CheckBounces();
@@ -62,7 +63,7 @@ void Projectile::CheckScreenEdge(){
 }
 
 void Projectile::CheckBounces(){
-	cout << bounceCount << endl;
+	//cout << bounceCount << endl;
 	if (bounceCount > 2) {
 		//remove object from memory
 		//will be interesting to see what happens to the lists
